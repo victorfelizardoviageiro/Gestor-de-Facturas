@@ -1,11 +1,22 @@
-import './App.css';
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles, MainContainer } from "./components/GlobalStyles";
+import SideBar from "./components/SideBar/SideBar";
+import { darkTheme,lightTheme } from "./themes";
 
 function App() {
+
   return (
-    <div className="App">
-      <h1>Gestor de Facturas</h1>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <>
+        <GlobalStyles/>
+        <SideBar/>
+        <MainContainer>
+          <h1>Area do Conteudo</h1>
+        </MainContainer>
+      </>
+    </ThemeProvider>
   );
+  
 }
 
 export default App;

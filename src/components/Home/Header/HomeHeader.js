@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components';
 import {RiArrowDownSLine} from 'react-icons/ri';
 import {IoAddCircle} from 'react-icons/io5';
@@ -17,9 +17,14 @@ const Title = styled.div`
 `
 
 const Filter = styled.div`
-    width: 140px;
+    width: 170px;
+    padding: 10px 5px;
+    background: ${({theme})=>theme.color.componentbg};
     position: relative;
     display: flex;
+    align-items:center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     margin-right: 35px;
     p{
         margin-right: 10px;
@@ -30,14 +35,28 @@ const Filter = styled.div`
         color: ${({theme})=>theme.color.roxo};
         cursor: pointer;
     }
+`
+const FilterOptions = styled.div`
+    transition: all 500ms;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    top: 145%;
+    left: 0;
+
+    &.opened{
+        height: 108px;
+    }
+
+    &.closed{
+        height: 0px;
+    }
 
     ul{
         background: ${({theme})=>theme.color.componentbg};
         width: 100%;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
-        position: absolute;
-        top: 170%;
         list-style: none;
 
     }
@@ -45,7 +64,7 @@ const Filter = styled.div`
     li{
         cursor: pointer;
         padding: 10px 25px;
-        transition: all 400ms;
+        transition: all 300ms ease-out;
         &:hover{
             background: #1823be27;
         }
@@ -55,9 +74,6 @@ const Filter = styled.div`
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
     }
-`
-const FilterOptions = styled.ul`
-    outline: solid;
 `
 const Button = styled.button`
     svg{
@@ -77,6 +93,11 @@ const Button = styled.button`
     border-radius: 35px;
 `
 function HomeHeader() {
+    const [isOpen, setIsOpen] = useState({status:false,selected:""});
+
+    function setState(status,selected){
+        setIsOpen({status:status, selected:selected})
+    }
     return (
        <Header>
            <Title>
@@ -84,13 +105,16 @@ function HomeHeader() {
                 <p>Tem 7 Facturas pendentes</p>
            </Title>
            <Filter>
-               <p>Filtrar por: </p>
-               <RiArrowDownSLine/>
-               <ul>
-                   <li>Estado</li>
-                   <li>Montande</li>
-                   <li>Data</li>
-               </ul>
+               <p>{isOpen.selected?isOpen.selected:"Estado"}</p>
+               <RiArrowDownSLine onClick={()=>setState(!isOpen.status,isOpen.selected)}/>
+
+               <FilterOptions className={isOpen.status?"opened":"closed"}>
+                    <ul onMouseLeave={()=>setState(false,isOpen.selected)}>
+                        <li onClick={()=>setState(false,"")}>Todas</li>
+                        <li onClick={()=>setState(false,"Pagas")}>Pagas</li>
+                        <li onClick={()=>setState(false,"Pendentes")}>Pendentes</li>
+                   </ul>
+               </FilterOptions>
            </Filter>
            <Button color="#7C5DF9">
                 <IoAddCircle/>

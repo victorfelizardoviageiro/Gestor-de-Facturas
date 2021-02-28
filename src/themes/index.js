@@ -11,7 +11,7 @@ export const darkTheme = {
 export const lightTheme = {
     color: {
         appbg: '#141625',
-        componentbg: '#1F213A',
+        componentbg: 'white',
         text:'white',
         text2:'#858AB2',
         roxo: '#7C5DF9',

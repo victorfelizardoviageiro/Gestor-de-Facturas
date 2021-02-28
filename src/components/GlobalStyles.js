@@ -16,7 +16,8 @@ export const GlobalStyles = createGlobalStyle`
 `
 
 export const MainContainer=styled.div`
-    padding-left:90px;
+    padding-left:110px;
+    padding-right: 10px;
     max-width: 100%;
     height: 100vh;
 

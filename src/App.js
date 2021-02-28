@@ -1,6 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles, MainContainer } from "./components/GlobalStyles";
 import SideBar from "./components/SideBar/SideBar";
+import Home from "./pages/Home/Home";
 import { darkTheme,lightTheme } from "./themes";
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
         <GlobalStyles/>
         <SideBar/>
         <MainContainer>
-          <h1>Area do Conteudo</h1>
+          <Home/>
         </MainContainer>
       </>
     </ThemeProvider>

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Sidebar = styled.div`
+    z-index: 100;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -20,14 +21,23 @@ export const Logo = styled.div`
     width: 100%;
     height: 80px;
 `
-export const ThemeIcon = styled.div`
+export const ThemeIcon = styled.button`
+    transition: all 400ms;
+    cursor: pointer;
+    background: none;
+    border: none;
     display: flex;
     flex-direction:column;
     align-items:center;
     margin-bottom: 25px;
+    &:hover{
+        transform: scale(1.1);
+    }
+    &:focus{
+        outline: dashed 1px ${({theme})=>theme.color.roxo}
+    };
     >svg{
         color: ${({theme})=>theme.color.text2};
-        cursor: pointer;
         font-size:1.15rem;
     }
 `

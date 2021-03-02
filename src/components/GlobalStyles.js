@@ -8,7 +8,8 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body{
-        color: white;
+        color: ${({theme})=>theme.color.text};
+        transition: all 500ms;
         background: ${({theme})=>theme.color.appbg};
         font-family: 'Josefin Sans', sans-serif;
         font-size: 16px;
